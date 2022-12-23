@@ -1,27 +1,40 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const axios = require('axios');
+const { XMLParser } = require('fast-xml-parser');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
-function activate(context) {
+async function activate(context) {
+	let articles = [];
+	try {
+		const res = await axios.get("https://medium.com/feed/@dan.avila7", { 
+			headers: { "Accept-Encoding": "gzip,deflate,compress" } 
+		});
+		const parser = new XMLParser();
+		let json = parser.parse(res.data);
+		articles = json.rss.channel.item.map(article => {
+			return {
+				label: article.title,
+				detail: article.category[0],
+				link: article.link
+			}
+		});
+		console.log(articles);
+	} catch (error) {
+		console.error(error);
+	}
+	
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "blog-feed-rss" is now active!');
+	let disposable = vscode.commands.registerCommand('blog-feed-rss.searchBlogRss', 
+	async function () {
+		const article = await vscode.window.showQuickPick(articles, {
+			matchOnDetail : true
+		});
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('blog-feed-rss.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Blog feed rss!');
+		if(article == null) return;
+		vscode.env.openExternal(article.link);
+		vscode.window.showInformationMessage('El artículo se abrirá en una nueva ventana');
 	});
 
 	context.subscriptions.push(disposable);
