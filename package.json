@@ -1,24 +1,144 @@
 {
   "name": "blog-feed-rss",
-  "displayName": "Daniel San Medium",
+  "displayName": "RSS Search",
   "publisher": "DanielSanMedium",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Show all articles from a RSS",
+  "license": "MIT",
+  "icon": "logo.png",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
+    "Other",
     "Education"
+  ],
+  "keywords": [
+    "Medium",
+    "Youtube",
+    "RSS",
+    "Reddit",
+    "XML",
+    "Feed",
+    "Hashnode",
+    "Dev.to",
+    "Blog",
+    "Articles"
   ],
   "activationEvents": [
     "onCommand:blog-feed-rss.searchBlogRss"
   ],
   "main": "./extension.js",
   "contributes": {
+    "configuration": {
+      "title": "RSS Search",
+      "properties": {
+        "RSS.link1.url": {
+          "title": "First Link",
+          "type": "string",
+          "default": "https://medium.com/feed/@dan.avila7",
+          "markdownDescription": "Add a rss url"
+        },
+        "RSS.link1.type": { 
+          "title": "First Link Source",
+          "type": "string",
+          "default": "Medium",
+          "markdownDescription": "Add a rss Type",
+          "enum": ["Medium", "Dev.to", "Hashnode", "Reddit", "Youtube"],
+          "enumDescriptions": [
+            "RSS from Medium",
+            "RSS from Dev.to",
+            "RSS from Hasnode",
+            "RSS from Reddit",
+            "RSS from Youtube"
+          ]
+        },
+        "RSS.link2.url": {
+          "title": "Second Link",
+          "type": "string",
+          "default": "https://dev.to/feed/dani_avila7",
+          "markdownDescription": "Add a rss url"
+        },
+        "RSS.link2.type": { 
+          "title": "Second Link Source",
+          "type": "string",
+          "default": "Dev.to",
+          "markdownDescription": "Add a rss Type",
+          "enum": ["Medium", "Dev.to", "Hashnode", "Reddit", "Youtube"],
+          "enumDescriptions": [
+            "RSS from Medium",
+            "RSS from Dev.to",
+            "RSS from Hasnode",
+            "RSS from Reddit",
+            "RSS from Youtube"
+          ]
+        },
+        "RSS.link3.url": {
+          "title": "Third Link",
+          "type": "string",
+          "default": "https://danielsan.hashnode.dev/rss.xml",
+          "markdownDescription": "Add a rss url"
+        },
+        "RSS.link3.type": { 
+          "title": "Third Link Source",
+          "type": "string",
+          "default": "Hashnode",
+          "markdownDescription": "Add a rss Type",
+          "enum": ["Medium", "Dev.to", "Hashnode", "Reddit", "Youtube"],
+          "enumDescriptions": [
+            "RSS from Medium",
+            "RSS from Dev.to",
+            "RSS from Hasnode",
+            "RSS from Reddit",
+            "RSS from Youtube"
+          ]
+        },
+        "RSS.link4.url": {
+          "title": "Fourth Link",
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Add a rss url"
+        },
+        "RSS.link4.type": { 
+          "title": "Fourth Link Source",
+          "type": "string",
+          "default": "Medium",
+          "markdownDescription": "Add a rss Type",
+          "enum": ["Medium", "Dev.to", "Hashnode", "Reddit", "Youtube"],
+          "enumDescriptions": [
+            "RSS from Medium",
+            "RSS from Dev.to",
+            "RSS from Hasnode",
+            "RSS from Reddit",
+            "RSS from Youtube"
+          ]
+        },
+        "RSS.link5.url": {
+          "title": "Fifth Link",
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Add a rss url"
+        },
+        "RSS.link5.type": { 
+          "title": "Fifth Link Source",
+          "type": "string",
+          "default": "Medium",
+          "markdownDescription": "Add a rss Type",
+          "enum": ["Medium", "Dev.to", "Hashnode", "Reddit", "Youtube"],
+          "enumDescriptions": [
+            "RSS from Medium",
+            "RSS from Dev.to",
+            "RSS from Hasnode",
+            "RSS from Reddit",
+            "RSS from Youtube"
+          ]
+        }
+      }
+    },
     "commands": [
       {
         "command": "blog-feed-rss.searchBlogRss",
-        "title": "Daniel San Medium"
+        "title": "RSS Search"
       }
     ]
   },
