@@ -5,7 +5,8 @@ VSCode extension to show RSS Feeds
 # Medium Example
 
 ## Get a RSS from Medium
-Add /feed/ inside the url, then copy the url. Example:
+Add /feed/ inside the url, then copy the url. Example: 
+<br>
 https://medium.com/@dan.avila7 => https://medium.com/feed/@dan.avila7
   
 ![Untitled](https://user-images.githubusercontent.com/6216945/209414240-05effc45-ee89-4c87-9b06-8dbabde0fcb8.gif)
